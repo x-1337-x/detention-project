@@ -1,24 +1,117 @@
-.App {
+.app {
+  display: flex;
+  flex-direction: column;
+  max-width: 1024px;
+  max-height: 768px;
+  height: 100%;
+  width: 100%;
+  box-shadow: 0 10px 200px 20px rgba(0,0,0,.3);
+  border-radius: 5px 5px 0 0;
+}
+
+
+.app-header {
+  flex: 0 0 auto;
+  background: #4CAF50;
+  padding: 10px 20px;
+  color: #fff;
+  font-size: 30px;
   text-align: center;
+  font-weight: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  border-radius: 5px 5px 0 0;
+}
+.app-header span {
+  padding-left: 20px;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+
+.app-body {
+  flex: 1 1 auto;
+  background: #fff;
+  display: flex;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+
+.app-nav {
+  flex: 0 0 auto;
+  width: 175px;
+  border-right: 1px solid rgba(0, 0, 0, 0.12);
+  display: flex;
+  flex-direction: column;
+  background: #f0f0f0;
 }
 
-.App-intro {
-  font-size: large;
+@media (max-width: 768px) {
+  .app-nav {
+    width: auto;    
+  }
+  .app-nav--item-label {
+    display: none;
+  }
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+
+.app-nav--item {
+  display: flex;
+  padding: 10px 15px;
+  align-items: center;
+  color: #333;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: 400;
+  border-left: 4px solid transparent;
+}
+
+.app-nav--item:hover {
+  background-color: #C8E6C9;
+}
+.app-nav--item__active,
+.app-nav--item__active:hover {
+  background-color: #A5D6A7;
+  border-color: #4CAF50;
+}
+
+.app-nav--item-icon {
+}
+
+.app-nav--item-label {
+  padding-bottom: 2px;
+  margin-left: 10px;
+}
+
+
+.app-content {
+  flex: 1 1 auto;
+  overflow: hidden;
+}
+
+.content-appear {
+  opacity: 0;
+  transform: translateY(10px);  
+}
+.content-appear-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity .2s ease, transform .2s ease;
+}
+
+.content-enter {
+  transform: translateY(50px);
+}
+.content-enter-active {
+  transition: transform .2s ease;
+}
+
+.content-leave {
+  opacity: 1;
+  transform: translateY(0px);  
+}
+.content-leave-active {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity .2s ease, transform .2s ease;
 }
