@@ -8,6 +8,11 @@
 html, body {
   height: 100%;
   font: normal 300 14px 'Roboto', Arial, sans-serif;
+  color: #333;
+}
+
+a {
+  text-decoration: none;
 }
 
 #root {
@@ -47,4 +52,65 @@ html, body {
 }
 .color--transfer {
   color: #2196F3;
+}
+
+.btn {
+  cursor: pointer;
+  display: inline-block;
+  border: none;
+  background: #4CAF50;
+  padding: 8px 15px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.2;
+  color: #fff;
+  border-radius: 3px;
+}
+.btn-md {
+  font-size: 20px;
+  padding: 10px 20px;
+}
+.btn:hover {
+  background: #2E7D32;
+}
+
+
+.form {
+  padding: 30px;
+  background: #f6f6f6;
+  border: 1px solid #ddd;
+  box-shadow: 0 5px 30px rgba(0,0,0,.1);
+}
+.form-title {
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+.form-group + .form-group {
+  padding-top: 20px;
+}
+.form .input-label {
+  padding-bottom: 5px;
+  font-size: 14px;
+}
+.form input[type=text],
+.form input[type=password],
+.form input[type=number] {
+  display: block;
+  width: 100%;
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  font-size: 20px;
+  border-radius: 3px;
+}
+
+.form input[type=text]:focus,
+.form input[type=password]:focus,
+.form input[type=number]:focus {
+  box-shadow: 0 0 5px #AEEA00;
+}
+
+.form .input-error {
+  padding-top: 3px;
+  font-size: 12px;
+  color: #F44336;
 }

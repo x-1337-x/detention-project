@@ -4,11 +4,15 @@
   height: 100%;
 }
 .dashboard-accounts {
-  flex: 1 1 120px;
-  max-width: 200px;
+  flex: 0 0 160px;
 }
 .dashboard-accounts--item {
   padding: 10px 15px;
+  color: #333;
+  display: block;
+}
+.dashboard-accounts--item.active {
+  border-right: 3px solid #81C784;
 }
 .dashboard-accounts--item + .dashboard-accounts--item {
   border-top: 1px solid rgba(0, 0, 0, 0.12);
@@ -32,43 +36,43 @@
 }
 
 
-.dashboard-operations {
-  flex: 5 1 auto;
+.dashboard-transactions {
+  flex: 1 1 auto;
 }
-.dashboard-operations--item {
+.dashboard-transactions--item {
   display: flex;
   padding: 10px 15px;
   align-items: center;
 }
-.dashboard-operations--item + .dashboard-operations--item {
+.dashboard-transactions--item + .dashboard-transactions--item {
   border-top: 1px solid rgba(0, 0, 0, 0.12);
 }
-.dashboard-operations--item-text {
+.dashboard-transactions--item-text {
   flex: 1 1 auto;
   display: flex;
   align-items: center;
 }
-.dashboard-operations--item-text > * {
+.dashboard-transactions--item-text > * {
   flex: 0 1 auto;
 }
-.dashboard-operations--item-account {
+.dashboard-transactions--item-account {
   color: #777;
   font-size: 12px;
   padding-right: 15px;
 }
-.dashboard-operations--item-label {
+.dashboard-transactions--item-label {
   font-weight: 500;
   padding-right: 15px;
 }
-.dashboard-operations--item-description {
+.dashboard-transactions--item-description {
   color: #777;
   font-size: 12px;
 }
-.dashboard-operations--item-actions {
+.dashboard-transactions--item-actions {
   flex: 0 1 auto;
   opacity: 0;
 }
-.dashboard-operations--item-amount {
+.dashboard-transactions--item-amount {
   flex: 0 1 auto;
   font-size: 16px;
   font-weight: 500;
@@ -76,7 +80,7 @@
   white-space: nowrap;
 }
 
-.dashboard-operations--item:hover .dashboard-operations--item-actions {
+.dashboard-transactions--item:hover .dashboard-transactions--item-actions {
   opacity: 1;
   transition: opacity .3s ease;
 }

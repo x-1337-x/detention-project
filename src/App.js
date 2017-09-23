@@ -12,8 +12,11 @@ import SwapHoriz from 'material-ui-icons/SwapHoriz';
 import AddCircleOutline from 'material-ui-icons/AddCircleOutline';
 import RemoveCircleOutline from 'material-ui-icons/RemoveCircleOutline';
 import TrendingUp from 'material-ui-icons/TrendingUp';
+import ExitToApp from 'material-ui-icons/ExitToApp';
 
 import Dashboard from './components/Dashboard';
+import Accounts from './components/Accounts';
+import FlashMessages from './components/FlashMessages';
 
 
 const nav = [
@@ -54,18 +57,25 @@ const animated = (component) => (
   >{component}</CSSTransitionGroup>
 )
 
-// const AnimatedDashboard = <Animated><Dashboard /></Animated>
-
 class App extends Component {
   render() {
     return (
       <div className="app">
 
-        <div className="app-header"><TrendingUp style={{width: 30, height: 30}} /> <span>Rich Bitch</span></div>
+        <div className="app-header">
+          <div className="app-header--title">
+            <TrendingUp style={{width: 30, height: 30}} /> 
+            <span>Rich Bitch</span>
+          </div>
+          <div className="app-header--user">
+            <span>mail.bigjey@gmail.com</span>
+            <ExitToApp />
+          </div>
+        </div>
         <div className="app-body">
           <div className="app-nav">
-            {nav.map(({icon, label, link, subitem = false}) => (
-              <NavLink exact to={link} className={
+            {nav.map(({icon, label, link}) => (
+              <NavLink exact key={link} to={link} className={
                 classnames('app-nav--item')
               } activeClassName="app-nav--item__active">
                 <span className="app-nav--item-icon">{icon}</span>
@@ -75,14 +85,16 @@ class App extends Component {
           </div>
 
           <div className="app-content">            
-            <Route key={1} exact path="/" component={() => animated(<Dashboard />)} />
-            <Route key={2} exact path="/income" component={() => animated(<div>Income</div>)} />
-            <Route exact path="/expense" component={() => animated(<div>Expense</div>)} />
-            <Route exact path="/transfer" component={() => animated(<div>Transfer</div>)} />
-            <Route exact path="/accounts" component={() => animated(<div>Account</div>)} />
-            <Route exact path="/categories" component={() => animated(<div>Categories</div>)} />
+            <Route exact path="/" component={() => (<Dashboard />)} />
+            <Route exact path="/income" component={() => (<div>Income</div>)} />
+            <Route exact path="/expense" component={() => (<div>Expense</div>)} />
+            <Route exact path="/transfer" component={() => (<div>Transfer</div>)} />
+            <Route path="/accounts" component={() => (<Accounts />)} />
+            <Route exact path="/categories" component={() => (<div>Categories</div>)} />
           </div>
         </div>
+
+        <FlashMessages />
 
       </div>
     );
