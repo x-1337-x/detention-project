@@ -49,7 +49,7 @@ class Accounts extends Component {
                     height: 100
                   }}
                 />
-                <h1>Manage your accounts.</h1>                
+                <h1>Manage your accounts.</h1>
                 <div style={{
                   padding: 10
                 }}>
@@ -58,7 +58,6 @@ class Accounts extends Component {
               </div>
             )}/>
             <Route exact path="/accounts/:id" component={({match}) => {
-              console.log('route', match.params.id);
               return (
                 <AccountForm accountId={match.params.id} />
               )

@@ -2,8 +2,9 @@ import './App.css';
 
 import React, { Component } from 'react';
 import classnames from 'classnames';
-import { Route, NavLink } from 'react-router-dom'
+import { Route, NavLink, withRouter } from 'react-router-dom';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
+import { connect } from 'react-redux';
 
 import Dvr from 'material-ui-icons/Dvr';
 import AccountBalanceWallet from 'material-ui-icons/AccountBalanceWallet';
@@ -12,7 +13,6 @@ import SwapHoriz from 'material-ui-icons/SwapHoriz';
 import AddCircleOutline from 'material-ui-icons/AddCircleOutline';
 import RemoveCircleOutline from 'material-ui-icons/RemoveCircleOutline';
 import TrendingUp from 'material-ui-icons/TrendingUp';
-import { connect } from 'react-redux';
 
 import Dashboard from './components/Dashboard';
 import Accounts from './components/Accounts';
@@ -63,7 +63,7 @@ class App extends Component {
     let { loggedin } = this.props;
 
     return (
-    
+
       <div className="app">
 
         <div className="app-header">
@@ -71,7 +71,7 @@ class App extends Component {
             <TrendingUp style={{width: 30, height: 30}} /> 
             <span>Rich Bitch</span>
           </div>
-          { loggedin && <AuthControls /> }  
+          { loggedin && <AuthControls /> }
         </div>
 
         {loggedin ? (
@@ -87,7 +87,7 @@ class App extends Component {
                 ))}
               </div>
 
-              <div className="app-content">            
+              <div className="app-content">
                 <Route exact path="/" component={() => (<Dashboard />)} />
                 <Route exact path="/income" component={() => (<div>Income</div>)} />
                 <Route exact path="/expense" component={() => (<div>Expense</div>)} />
@@ -114,4 +114,4 @@ let mapStateToProps = state => {
     loggedin: state.auth.email !== null
   }
 }
-export default connect(mapStateToProps)(App);
+export default withRouter(connect(mapStateToProps)(App));
