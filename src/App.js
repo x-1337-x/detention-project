@@ -3,7 +3,6 @@ import './App.css';
 import React, { Component } from 'react';
 import classnames from 'classnames';
 import { Route, NavLink, withRouter } from 'react-router-dom';
-import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import { connect } from 'react-redux';
 
 import Dvr from 'material-ui-icons/Dvr';
@@ -47,16 +46,6 @@ const nav = [
     link: '/categories'
   }
 ]
-
-const animated = (component) => (
-  <CSSTransitionGroup
-    transitionName="content"
-    transitionAppear={true}
-    transitionAppearTimeout={0}
-    transitionEnterTimeout={0}
-    transitionLeaveTimeout={0}
-  >{component}</CSSTransitionGroup>
-)
 
 class App extends Component {
   render() {
