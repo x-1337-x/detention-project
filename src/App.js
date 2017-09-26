@@ -12,12 +12,13 @@ import SwapHoriz from 'material-ui-icons/SwapHoriz';
 import AddCircleOutline from 'material-ui-icons/AddCircleOutline';
 import RemoveCircleOutline from 'material-ui-icons/RemoveCircleOutline';
 import TrendingUp from 'material-ui-icons/TrendingUp';
-import ExitToApp from 'material-ui-icons/ExitToApp';
+import { connect } from 'react-redux';
 
 import Dashboard from './components/Dashboard';
 import Accounts from './components/Accounts';
 import FlashMessages from './components/FlashMessages';
-
+import LoginForm from './components/LoginForm';
+import AuthControls from './AuthControls';
 
 const nav = [
   {
@@ -59,7 +60,10 @@ const animated = (component) => (
 
 class App extends Component {
   render() {
+    let { loggedin } = this.props;
+
     return (
+    
       <div className="app">
 
         <div className="app-header">
@@ -67,32 +71,36 @@ class App extends Component {
             <TrendingUp style={{width: 30, height: 30}} /> 
             <span>Rich Bitch</span>
           </div>
-          <div className="app-header--user">
-            <span>mail.bigjey@gmail.com</span>
-            <ExitToApp />
-          </div>
+          { loggedin && <AuthControls /> }  
         </div>
-        <div className="app-body">
-          <div className="app-nav">
-            {nav.map(({icon, label, link}) => (
-              <NavLink exact key={link} to={link} className={
-                classnames('app-nav--item')
-              } activeClassName="app-nav--item__active">
-                <span className="app-nav--item-icon">{icon}</span>
-                <span className="app-nav--item-label">{label}</span>
-              </NavLink>
-            ))}
-          </div>
 
-          <div className="app-content">            
-            <Route exact path="/" component={() => (<Dashboard />)} />
-            <Route exact path="/income" component={() => (<div>Income</div>)} />
-            <Route exact path="/expense" component={() => (<div>Expense</div>)} />
-            <Route exact path="/transfer" component={() => (<div>Transfer</div>)} />
-            <Route path="/accounts" component={() => (<Accounts />)} />
-            <Route exact path="/categories" component={() => (<div>Categories</div>)} />
+        {loggedin ? (
+          <div className="app-body">
+              <div className="app-nav">
+                {nav.map(({icon, label, link}) => (
+                  <NavLink exact key={link} to={link} className={
+                    classnames('app-nav--item')
+                  } activeClassName="app-nav--item__active">
+                    <span className="app-nav--item-icon">{icon}</span>
+                    <span className="app-nav--item-label">{label}</span>
+                  </NavLink>
+                ))}
+              </div>
+
+              <div className="app-content">            
+                <Route exact path="/" component={() => (<Dashboard />)} />
+                <Route exact path="/income" component={() => (<div>Income</div>)} />
+                <Route exact path="/expense" component={() => (<div>Expense</div>)} />
+                <Route exact path="/transfer" component={() => (<div>Transfer</div>)} />
+                <Route path="/accounts" component={() => (<Accounts />)} />
+                <Route exact path="/categories" component={() => (<div>Categories</div>)} />
+              </div>
           </div>
-        </div>
+        ) : ( 
+          <div className="app-body">
+            <LoginForm />
+          </div>
+        )}
 
         <FlashMessages />
 
@@ -101,4 +109,9 @@ class App extends Component {
   }
 }
 
-export default App;
+let mapStateToProps = state => {
+  return {
+    loggedin: state.auth.email !== null
+  }
+}
+export default connect(mapStateToProps)(App);
