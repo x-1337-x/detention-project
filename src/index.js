@@ -15,7 +15,7 @@ import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import reducer from './reducers';
 
 
-const store = createStore(reducer, applyMiddleware(logger));
+const store = createStore(reducer, applyMiddleware(logger), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 ReactDOM.render(
   <Provider store={store}>
