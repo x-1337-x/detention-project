@@ -4,8 +4,11 @@ import uuid from 'uuid/v4';
 
 import Transaction from './Transaction';
 
-import {remove} from '../../actions/transactions';
-import {add} from '../../actions/flashes';
+import {remove, restore} from '../../actions/transactions';
+
+import Button from 'material-ui/Button';
+import {add, hide} from '../../actions/flashes';
+
 
 const Transactions = ({transactions, removeTransaction}) => (
   <div className="dashboard-transactions widget">
@@ -22,19 +25,31 @@ const Transactions = ({transactions, removeTransaction}) => (
 
 
 const stateToProps = state => ({
-  transactions: state.transactions
+  transactions: state.transactions.filter(t => !t.deleted)
 })
 
 const dispatchToProps = dispatch => ({
   removeTransaction(id) {
     dispatch(remove(id));
+    
+    const flashId = uuid();
     dispatch(add({
-      id: uuid(),
+      id: flashId,
       open: true,
       message: 'transaction has been deleted',
       hideAfter: 2000,
-      vertical: 'botom',
-      horizontal: 'center'
+      action: (
+        <Button 
+          onClick={() => { 
+            dispatch(restore(id));
+            dispatch(hide(flashId));
+          }}
+          color="accent"
+          raised
+        >
+          UNDO
+        </Button>
+      )
     }))
   }
 })

@@ -1,5 +1,3 @@
-import uuid from 'uuid/v4';
-
 import {ACCOUNTS_CREATE, ACCOUNTS_UPDATE} from '../actions/accounts';
 
 const defaultState = [
