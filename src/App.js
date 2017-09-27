@@ -25,18 +25,6 @@ const nav = [
     label: 'Dashboard',
     link: '/'
   }, {
-    icon: <AddCircleOutline />,
-    label: 'Income',
-    link: '/income'
-  }, {
-    icon: <RemoveCircleOutline />,
-    label: 'Expense',
-    link: '/expense'
-  }, {
-    icon: <SwapHoriz />,
-    label: 'Transfer',
-    link: '/transfer'
-  }, {
     icon: <AccountBalanceWallet />,
     label: 'Accounts',
     link: '/accounts'
@@ -60,7 +48,20 @@ class App extends Component {
             <TrendingUp style={{width: 30, height: 30}} /> 
             <span>Rich Bitch</span>
           </div>
-          { loggedin && <AuthControls /> }
+          {loggedin && (
+            <div className="app-header-nav">
+              <div className="app-header-nav--item">
+                <NavLink to="/income" className="app-header-nav--link"><AddCircleOutline /></NavLink>
+              </div>
+              <div className="app-header-nav--item">
+                <NavLink to="/expense" className="app-header-nav--link"><RemoveCircleOutline /></NavLink>
+              </div>
+              <div className="app-header-nav--item">
+                <NavLink to="/transfer" className="app-header-nav--link"><SwapHoriz /></NavLink>
+              </div>
+              <AuthControls />
+            </div>
+          )}
         </div>
 
         {loggedin ? (

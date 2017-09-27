@@ -7,11 +7,11 @@ import {hide, remove} from '../../actions/flashes';
 const FlashMessages = ({flashes, removeFlash, hideFlash}) => (
   <div>
     {flashes.map(({
-      id, 
-      message, 
-      open, 
-      hideAfter = 3000, 
-      vertical = 'top', 
+      id,
+      message,
+      open,
+      hideAfter = 3000,
+      vertical = 'top',
       horizontal = 'right',
       action = null
     }) =>

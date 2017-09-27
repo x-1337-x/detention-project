@@ -17,7 +17,7 @@
   font-size: 30px;
   font-weight: 100;
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
   width: 100%;
   border-radius: 5px 5px 0 0;
@@ -28,11 +28,40 @@
 
 .app-header--title {
   flex: 1 1 auto;
-  padding: 10px 20px;  
+  padding: 10px 20px;
 }
+
+.app-header-nav {
+  display: flex;
+  flex: 0 0 auto;
+}
+.app-header-nav--item {
+  display: flex;
+  height: 100%;
+  align-content: center;
+  justify-content: center;
+  border-left: 1px solid #2E7D32;
+}
+
+.app-header-nav--link {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  padding: 10px 20px;
+  background: #388E3C;
+  color: #fff;
+}
+.app-header-nav--link svg {
+  flex: 1 auto;
+  align-self: center;
+}
+.app-header-nav--link:hover {
+  background: #43A047;
+}
+
 .app-header--user {
   flex: 0 1 auto;
-  background: #2E7D32;
+  background: #388E3C;
   padding: 10px 20px;
   border-radius: 0 5px 0 0;
   font-size: 16px;
@@ -43,9 +72,10 @@
   justify-content: center;
   cursor: pointer;
   transition: background-color .1s ease;
+  border-left: 1px solid #2E7D32;
 }
 .app-header--user:hover {
-  background-color: #388E3C;
+  background-color: #43A047;
 }
 .app-header--user svg {
   transition: transform .2s ease;

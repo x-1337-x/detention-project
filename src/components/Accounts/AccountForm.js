@@ -21,7 +21,7 @@ class AccountForm extends Component {
   constructor(props){
     super(props);
 
-    this.populate();    
+    this.populate();
   }
 
   populate() {
@@ -69,7 +69,7 @@ class AccountForm extends Component {
         });
         this.props.addFlash('Account has been created');
       };
-      
+
       this.setState({
         erorrs: {},
         completed: true,
