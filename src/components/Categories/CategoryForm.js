@@ -18,22 +18,22 @@ class CategoryForm extends Component {
     },
     errors: {},
     completed: false
-    // newId: null
   }
 
   submitHandler = (e) => {
     e.preventDefault();
-    console.log('Submitted')
 
     if(this.valid()) {
       this.props.addCategory({
         ...this.state.fields
-      })
+      });
+
+      this.props.addFlash("Category added");
 
       this.setState({
         errors: {},
         completed: true
-      })
+      });
     }
   }
 
@@ -49,9 +49,7 @@ class CategoryForm extends Component {
   }
 
   validateField = (field, updateState = false) => {
-    console.log('validated')
     const val = this.state.fields[field];
-    console.log("Value:  ", val)
     let message = null;
 
     if (field === 'name') {
@@ -76,29 +74,16 @@ class CategoryForm extends Component {
     this.validateField(target.name, true);
   }
 
-  handleRadioChange = (event) => {
-    console.log(event)
-    this.setState({
-      fields: {
-          ...this.state.fields,
-          type: event.target.value
-        }
-      }
-    )
-  }
-
   valid = () => {
     const {name} = this.state.fields;
     let valid = true;
     let errors = {};
 
-    (name) => {
-      let err = this.valdateField(name);
-      if (err) {
-        errors[name] = err;
-        valid = false;
-      }
-    }
+    let err = this.validateField(name);
+    if (err) {
+      errors[name] = err;
+      valid = false;
+    };
 
     this.setState({errors});
 
@@ -106,7 +91,7 @@ class CategoryForm extends Component {
   }
 
   render() {
-    const {fields: {type, name}, errors, deleted, completed} = this.state;
+    const {fields: {type, name}, errors, completed} = this.state;
 
     if (completed) return <Redirect to={`/categories`} />;
 
@@ -135,7 +120,8 @@ class CategoryForm extends Component {
             <div className="input-label">Type</div>
             <RadioGroup
               value={type}
-              onChange={this.handleRadioChange}
+              name="type"
+              onChange={this.inputHandler}
               row
             >
               <FormControlLabel value="income" control={<Radio />} label="Income" />
@@ -153,10 +139,6 @@ class CategoryForm extends Component {
   }
 }
 
-const stateToProps = (state, ownProps) => ({
-
-})
-
 const dispatchToProps = dispatch => ({
   addCategory(data) {
     dispatch(addCategory(data));
@@ -171,4 +153,4 @@ const dispatchToProps = dispatch => ({
   }
 })
 
-export default connect(stateToProps, dispatchToProps)(CategoryForm);
+export default connect(null, dispatchToProps)(CategoryForm);
