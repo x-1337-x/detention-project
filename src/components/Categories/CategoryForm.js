@@ -74,16 +74,18 @@ class CategoryForm extends Component {
     this.validateField(target.name, true);
   }
 
-  valid = () => {
+  valid = (field = null) => {
     const {name} = this.state.fields;
     let valid = true;
     let errors = {};
 
-    let err = this.validateField(name);
-    if (err) {
-      errors[name] = err;
-      valid = false;
-    };
+    ['name'].forEach(field => {
+      let error = this.validateField(field);
+      if (error) {
+        errors[field] = error;
+        valid = false;
+      }
+    })
 
     this.setState({errors});
 
@@ -97,7 +99,6 @@ class CategoryForm extends Component {
 
     return (
       <div>
-        <div>cat form</div>
         <form
           className="form"
           onSubmit={this.submitHandler}
