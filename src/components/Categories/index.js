@@ -40,8 +40,9 @@ class Categories extends Component {
                 </div>
               )}
             />
-            
+
           <Route exact path="/categories/add" component={CategoryForm}/>
+          <Route exact path="/categories/:id" component={({match}) => <CategoryForm id={match.params.id}/>}/>
           </Switch>
         </div>
       </div>

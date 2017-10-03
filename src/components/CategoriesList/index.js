@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { Link } from 'react-router-dom';
 import {connect} from 'react-redux';
 import uuid from 'uuid/v4';
 import Button from 'material-ui/Button';
@@ -15,7 +16,11 @@ class CategoriesList extends Component {
         <ul>
           {categories.map(el =>
             <li className="categories--item">
-              <span className="categories--item-name">{el.name}</span><button className="remove-button" onClick={() => remove(el.id)}>Remove</button>
+              <span className="categories--item-name">{el.name}</span>
+              <div className="category-actions">
+                <button className="action-button"><Link to={`categories/${el.id}`}>Edit</Link></button>
+                <button className="action-button" onClick={() => remove(el.id)}>Remove</button>
+              </div>
             </li>
           )}
         </ul>

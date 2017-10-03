@@ -13,13 +13,30 @@
   line-height: 20px;
 }
 
-.categories--item:hover > .remove-button {
-  display: inline-block;
+.category-actions {
   float: right;
+  display: none;
+}
+
+.categories--item:hover .category-actions {
+  display: inline-block;
+}
+
+.action-button {
+  display: inline-block;
   background-color: #fff;
   border: 1px solid #666;
   border-radius: 3px;
   padding: 1px 5px;
+}
+
+.action-button a {
+  color: #000;
+  cursor: default;
+}
+
+.action-button + .action-button {
+  margin-left: 10px;
 }
 
 .categories--item + .categories--item {
@@ -30,8 +47,4 @@
   display: inline-block;
   padding: 0 20px 0 0;
   font-weight: 500;
-}
-
-.remove-button {
-  display: none;
 }
