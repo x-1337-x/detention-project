@@ -7,6 +7,8 @@ import { FormControlLabel } from 'material-ui/Form';
 import CategoriesList from '../CategoriesList';
 import CategoryForm from './CategoryForm';
 
+import './style.css';
+
 class Categories extends Component {
   state = {
     categoryType: 'income',

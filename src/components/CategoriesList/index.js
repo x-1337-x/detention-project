@@ -5,15 +5,17 @@ import Button from 'material-ui/Button';
 import {removeCategory, restoreCategory} from '../../actions/categories';
 import {add, hide} from '../../actions/flashes';
 
+import './style.css';
+
 class CategoriesList extends Component {
   render() {
     const {categories, remove} = this.props;
     return (
       <div className="categories-list">
         <ul>
-          {categories.map(el => 
-            <li>
-              {el.name} <button onClick={() => remove(el.id)}>X</button>
+          {categories.map(el =>
+            <li className="categories--item">
+              <span className="categories--item-name">{el.name}</span><button className="remove-button" onClick={() => remove(el.id)}>Remove</button>
             </li>
           )}
         </ul>
