@@ -31,7 +31,7 @@ const stateToProps = state => ({
 const dispatchToProps = dispatch => ({
   removeTransaction(id) {
     dispatch(remove(id));
-    
+
     const flashId = uuid();
     dispatch(add({
       id: flashId,

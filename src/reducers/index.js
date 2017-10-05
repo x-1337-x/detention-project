@@ -7,7 +7,7 @@ import auth from './auth';
 import categories from './categories';
 
 export default combineReducers({
-  accounts, 
+  accounts,
   transactions,
   flashes,
   auth,
