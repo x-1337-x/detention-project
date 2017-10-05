@@ -19,6 +19,7 @@ import FlashMessages from './components/FlashMessages';
 import LoginForm from './components/LoginForm';
 import Categories from './components/Categories';
 import AuthControls from './AuthControls';
+import TransactionForm from './components/Transactions/TransactionForm';
 
 const nav = [
   {
@@ -80,7 +81,7 @@ class App extends Component {
 
               <div className="app-content">
                 <Route exact path="/" component={() => (<Dashboard />)} />
-                <Route exact path="/income" component={() => (<div>Income</div>)} />
+                <Route exact path="/income" component={() => (<TransactionForm type='income'/>)} />
                 <Route exact path="/expense" component={() => (<div>Expense</div>)} />
                 <Route exact path="/transfer" component={() => (<div>Transfer</div>)} />
                 <Route path="/accounts" component={() => (<Accounts />)} />

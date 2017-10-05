@@ -4,7 +4,7 @@ import uuid from 'uuid/v4';
 
 import Transaction from './Transaction';
 
-import {remove, restore} from '../../actions/transactions';
+import {create, remove, restore} from '../../actions/transactions';
 
 import Button from 'material-ui/Button';
 import {add, hide} from '../../actions/flashes';

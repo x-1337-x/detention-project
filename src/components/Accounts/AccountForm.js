@@ -135,38 +135,44 @@ class AccountForm extends Component {
     if (completed && newId) return <Redirect to={`/accounts/${newId}`} />;
 
     return (
-      <form className="form" onSubmit={this.submitHandler}>
-        <div className="form-title">
-          {newMode ? 'New Account' : 'Edit Account'}
-        </div>
-        <div className="form-group">
-          <div className="input-label">Name</div>
-          <input name="name" type="text" value={name} 
-            onChange={this.inputHandler} 
-            onBlur={this.fieldBlurHandler}
-          />
-          {errors['name'] && (
-            <div className="input-error">{errors['name']}</div>
-          )}
-        </div>
-        <div className="form-group">
-          <div className="input-label">Balance</div>
-          <input name="balance" type="number" value={balance} 
-            onChange={this.inputHandler} 
-            onFocus={(e) => {
-            }} 
-            onBlur={this.fieldBlurHandler}
-          />
-          {errors['balance'] && (
-            <div className="input-error">{errors['balance']}</div>
-          )}
-        </div>
-        <div className="form-group">
-          <button className="btn btn-md">
-            {newMode ? 'Add' : 'Save'}
-          </button>
-        </div>
-      </form>
+      <div>
+        <form className="form" onSubmit={this.submitHandler}>
+          <div className="form-title">
+            {newMode ? 'New Account' : 'Edit Account'}
+          </div>
+          <div className="form-group">
+            <div className="input-label">Name</div>
+            <input
+              name="name"
+              type="text"
+              value={name}
+              onChange={this.inputHandler}
+              onBlur={this.fieldBlurHandler}
+            />
+            {errors['name'] && (
+              <div className="input-error">{errors['name']}</div>
+            )}
+          </div>
+          <div className="form-group">
+            <div className="input-label">Balance</div>
+            <input
+              name="balance"
+              type="number"
+              value={balance}
+              onChange={this.inputHandler}
+              onBlur={this.fieldBlurHandler}
+            />
+            {errors['balance'] && (
+              <div className="input-error">{errors['balance']}</div>
+            )}
+          </div>
+          <div className="form-group">
+            <button className="btn btn-md">
+              {newMode ? 'Add' : 'Save'}
+            </button>
+          </div>
+        </form>
+      </div>
     );
   }
 }

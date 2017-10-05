@@ -1,6 +1,6 @@
 import uuid from 'uuid/v4';
 
-import {TRANSACTIONS_DELETE, TRANSACTIONS_RESTORE} from '../actions/transactions';
+import {TRANSACTIONS_CREATE, TRANSACTIONS_DELETE, TRANSACTIONS_RESTORE} from '../actions/transactions';
 
 const defaultState = [
   {
@@ -33,6 +33,9 @@ const defaultState = [
 
 export default (prevState = defaultState, action) => {
   switch(action.type){
+
+    case TRANSACTIONS_CREATE:
+      return prevState.concat(action.data)
 
     case TRANSACTIONS_DELETE:
       const {id} = action;
