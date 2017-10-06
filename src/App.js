@@ -82,8 +82,8 @@ class App extends Component {
               <div className="app-content">
                 <Route exact path="/" component={() => (<Dashboard />)} />
                 <Route exact path="/income" component={() => (<TransactionForm type='income'/>)} />
-                <Route exact path="/expense" component={() => (<div>Expense</div>)} />
-                <Route exact path="/transfer" component={() => (<div>Transfer</div>)} />
+                <Route exact path="/expense" component={() => (<TransactionForm type='expense'/>)} />
+                <Route exact path="/transfer" component={() => (<TransactionForm type='transfer'/>)} />
                 <Route path="/accounts" component={() => (<Accounts />)} />
                 <Route path="/categories" component={() => (<Categories />)} />
               </div>

@@ -15,9 +15,10 @@ class TransactionForm extends Component {
   state = {
     fields: {
       id: uuid(),
-      type: '',
+      type: this.props.type,
       amount: 0,
       account: '',
+      targetAccount: '',
       category: '',
       description: '',
       deleted: false
@@ -28,17 +29,27 @@ class TransactionForm extends Component {
   }
 
   componentWillMount() {
-    this.setState({
-      fields: {
-        ...this.state.fields,
-        type: this.props.type.name,
-        account: this.props.accounts[0].name,
-        category: this.props.categories[0].name
-      }
-    })
+    if (this.props.type === 'transfer') {
+      this.setState({
+        fields: {
+          ...this.state.fields,
+          account: this.props.accounts[0].name,
+          targetAccount: this.props.accounts[0].name,
+          category: null
+        }
+      })
+    } else {
+      this.setState({
+        fields: {
+          ...this.state.fields,
+          account: this.props.accounts[0].name,
+          targetAccount: null,
+          category: this.props.categories[0].name
+        }
+      })
+    }
   }
 
-//TODO: reset select values on type change
   inputHandler = ({target}) => {
     this.setState({
       fields: {
@@ -54,14 +65,14 @@ class TransactionForm extends Component {
   }
 
   render() {
-    const {fields: {type, amount, account, category, description, deleted}, errors, completed, newId} = this.state;
+    const {fields: {type, amount, account, targetAccount, category, description, deleted}, errors, completed, newId} = this.state;
     const {accounts, categories} = this.props;
 
     return (
       <div>
         <form className="form" onSubmit={this.submitHandler}>
           <div className="form-title">
-            Transaction Form
+            {this.props.type.charAt(0).toUpperCase() + this.props.type.slice(1)} Form
           </div>
           <div className="form-group">
             <div className="input-label">Amount</div>
@@ -100,7 +111,7 @@ class TransactionForm extends Component {
               {accounts.map(a => <option value={a.name}>{a.name}</option>)}
             </select>
           </div>
-          {type !== 'transfer' && (
+          {this.props.type !== 'transfer' && (
             <div className="form-group">
               <div className="input-label">Category</div>
               <select
@@ -109,6 +120,18 @@ class TransactionForm extends Component {
                 onChange={this.inputHandler}
               >
                 {categories.map(c => <option value={c.name}>{c.name}</option>)}
+              </select>
+            </div>
+          )}
+          {this.props.type === 'transfer' && (
+            <div className="form-group">
+              <div className="input-label">Target Account</div>
+              <select
+                name="targetAccount"
+                value={targetAccount}
+                onChange={this.inputHandler}
+              >
+                {accounts.map(a => <option value={a.name}>{a.name}</option>)}
               </select>
             </div>
           )}
